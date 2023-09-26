@@ -58,32 +58,23 @@ public class Device {
     }
 
     // Метод "заменить"
-    private void replaceDevice(String manufacturer, float price, String serialNumber){
-        setManufacturer(manufacturer);
-        setPrice(price);
-        setSerialNumber(serialNumber);
+    private void replaceDevice(){
+        System.out.println(manufacturer + " был заменён.");
     }
 
     // Метод "распознать"
-    private void recognizeDevice(String manufacturer, float price, String serialNumber){
-        setManufacturer(manufacturer);
-        setPrice(price);
-        setSerialNumber(serialNumber);
+    private void recognizeDevice(){
+        System.out.println(manufacturer + " был распознан.");
     }
 
     // Метод "установить драйвер"
-    private void addDriver(String manufacturer, float price, String serialNumber){
-        setManufacturer(manufacturer);
-        setPrice(price);
-        setSerialNumber(serialNumber);
+    private void addDriver(){
+        System.out.println("Для " + manufacturer + " был установлен драйвер.");
     }
 
     // Метод "удалить драйвер"
-    private void removeDriver(String manufacturer, float price, String serialNumber){
-        setManufacturer(manufacturer);
-        setPrice(price);
-        setSerialNumber(serialNumber);
+    private void removeDriver(){
+        System.out.println("Для " + manufacturer + " был удалён драйвер.");
     }
-
 
 }
