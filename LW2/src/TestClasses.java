@@ -14,22 +14,13 @@ public class TestClasses {
         System.out.println(devices[2].toString()+ "\n");
         System.out.println(devices[5].toString()+ "\n");
 
-
-        if(devices[1].equals(devices[3])){
-            System.out.println("Device1 is equals Device3, both EthernetAdapter");
+        for (int i = 0; i < devices.length; i++) {
+            for (int j = 0; j < devices.length; j++) {
+                if (!devices[i].equals(devices[j]) && i!=j) {
+                    System.out.println("Device " + i + " is not equal to Device " + j);
+                }
+            }
         }
-        else System.out.println("Device1 is not equals Device3");
-
-        if (devices[0].equals(devices[2])){
-            System.out.println("Device0 is equals Device2, both Monitor");
-        }
-        else System.out.println("Device0 is not equals Device2");
-
-        if (devices[4].equals(devices[5])){
-            System.out.println("Device4 is equals Device5");
-        }
-        else System.out.println("Device4 is not equals Device2");
-
 
 //        for (Device device : devices) {
 //            System.out.println(device);
