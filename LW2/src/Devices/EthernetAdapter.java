@@ -1,3 +1,5 @@
+package Devices;
+
 public class EthernetAdapter extends Device {
 
     private int speed;
@@ -27,7 +29,7 @@ public class EthernetAdapter extends Device {
 
     @Override
     public String toString() {
-        return "EthernetAdapter{" +
+        return "Devices.EthernetAdapter{" +
                 "manufacturer='" + getManufacturer() + '\'' +
                 ", serialNumber='" + getSerialNumber() + '\'' +
                 ", price=" + getPrice() +

@@ -1,3 +1,5 @@
+package Devices;
+
 public class Monitor extends Device {
 
     private int resolutionX, resolutionY;
@@ -26,7 +28,7 @@ public class Monitor extends Device {
 
     @Override
     public String toString() {
-        return "Monitor{" +
+        return "Devices.Monitor{" +
                 "manufacturer='" + getManufacturer() + '\'' +
                 ", serialNumber='" + getSerialNumber() + '\'' +
                 ", price=" + getPrice() +

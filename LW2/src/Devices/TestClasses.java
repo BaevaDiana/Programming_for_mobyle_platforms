@@ -1,3 +1,5 @@
+package Devices;
+
 public class TestClasses {
     public static void main(String[] args) {
 
@@ -17,12 +19,12 @@ public class TestClasses {
         for (int i = 0; i < devices.length; i++) {
             for (int j = 0; j < devices.length; j++) {
                 if (!devices[i].equals(devices[j]) && i!=j) {
-                    System.out.println("Device " + i + " is not equal to Device " + j);
+                    System.out.println("Devices.Device " + i + " is not equal to Devices.Device " + j);
                 }
             }
         }
 
-//        for (Device device : devices) {
+//        for (Devices.Device device : devices) {
 //            System.out.println(device);
 //        }
     }

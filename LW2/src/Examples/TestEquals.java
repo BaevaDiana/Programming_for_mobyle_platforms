@@ -1,3 +1,5 @@
+package Examples;
+
 public class TestEquals {
      public static void main(String[] args){
          MyDate date1 = new MyDate(7,11,2014);

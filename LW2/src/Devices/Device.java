@@ -1,3 +1,5 @@
+package Devices;
+
 public class Device {
     private String manufacturer, serialNumber;
     private float price;
@@ -37,7 +39,7 @@ public class Device {
 
     @Override
     public String toString() {
-        return "Device{" +
+        return "Devices.Device{" +
                 "manufacturer='" + manufacturer + '\'' +
                 ", serialNumber='" + serialNumber + '\'' +
                 ", price=" + price +
