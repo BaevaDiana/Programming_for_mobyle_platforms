@@ -1,6 +1,6 @@
 package Devices;
 
-public class Device {
+public class Device implements IDevice, IDeviceDrivers {
     private String manufacturer, serialNumber;
     private float price;
 
@@ -10,17 +10,17 @@ public class Device {
         this.serialNumber = serialNumber;
     }
 
-    private void setManufacturer(String manufacturer){
+    public void setManufacturer(String manufacturer){
         this.manufacturer = manufacturer;
 
     }
 
-    private void setSerialNumber(String serialNumber){
+    public void setSerialNumber(String serialNumber){
         this.serialNumber = serialNumber;
 
     }
 
-    private void setPrice(float price){
+    public void setPrice(float price){
         this.price = price;
 
     }
@@ -60,22 +60,22 @@ public class Device {
     }
 
     // Метод "заменить"
-    private void replaceDevice(){
+    public void replaceDevice(){
         System.out.println(manufacturer + " был заменён.");
     }
 
     // Метод "распознать"
-    private void recognizeDevice(){
+    public void recognizeDevice(){
         System.out.println(manufacturer + " был распознан.");
     }
 
     // Метод "установить драйвер"
-    private void addDriver(){
+    public void addDriver(){
         System.out.println("Для " + manufacturer + " был установлен драйвер.");
     }
 
     // Метод "удалить драйвер"
-    private void removeDriver(){
+    public void removeDriver(){
         System.out.println("Для " + manufacturer + " был удалён драйвер.");
     }
 

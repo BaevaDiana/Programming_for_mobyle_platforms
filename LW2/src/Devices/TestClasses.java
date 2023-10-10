@@ -19,7 +19,7 @@ public class TestClasses {
         for (int i = 0; i < devices.length; i++) {
             for (int j = 0; j < devices.length; j++) {
                 if (!devices[i].equals(devices[j]) && i!=j) {
-                    System.out.println("Devices.Device " + i + " is not equal to Devices.Device " + j);
+                    System.out.println("Device " + i + " is not equal to Device " + j);
                 }
             }
         }
