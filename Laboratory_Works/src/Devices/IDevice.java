@@ -5,7 +5,7 @@ public interface IDevice {
     // получить название производителя
      String getManufacturer();
 
-    // получить серийный номер+
+    // получить серийный номер
     String getSerialNumber();
 
     // получить цену
