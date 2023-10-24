@@ -1,6 +1,5 @@
 package Game_2048;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -10,31 +9,34 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
 public class Game extends JPanel implements KeyListener {
-    //
+    // создание нового объекта класса Board, который представляет игровое поле
     Board game = new Board();
-    //
+    // создание нового объекта класса Game, который используется для настройки графического интерфейса
     static Game newGame = new Game();
-    //
+    // создание нового объекта класса JFrame с заголовком
     static JFrame frame = new JFrame("2048");
-    //
-    static Color green;
-    //
+    // строковое представление игрового поля
     String gameBoard = game.toString();
 
     // настройка графического интерфейса
     public static void setUpGUI()
     {
+        // добавление слушателя событий к объекту
         frame.addKeyListener(newGame);
+        // добавление объекта newGame в контейнер contentPane объекта frame
         frame.getContentPane().add(newGame);
-        frame.setSize( 600, 400 );
+        // установка размером окна игры
+        frame.setSize(600, 400);
+        // установка окна видимым
         frame.setVisible(true);
+        // нельзя изменять размер окна
         frame.setResizable(false);
     }
 
+    // используется keyPressed по нажатию по кнопке клавиатуры
     // проверка нажатия соответствующих клавиши Wasd или клавиши со стрелками
-    // обновление JFrame при каждом движении
+    // обновление JFrame при каждом нажатии
     @Override
     public void keyPressed(KeyEvent e)
     {
@@ -77,12 +79,12 @@ public class Game extends JPanel implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method
     }
 
     // отрисовка отдельной плитки
@@ -90,32 +92,49 @@ public class Game extends JPanel implements KeyListener {
     {
         int tileValue = tile.getValue();
         int length = String.valueOf(tileValue).length();
+        // создание объекта Graphics2D из объекта Graphics
         Graphics2D g2 = (Graphics2D)g;
+        // установка цвета рисования - серого
         g2.setColor(Color.lightGray);
+        // заполнение прямоугольника с закругленными углами размером 50x50 пикселей
         g2.fillRoundRect(x, y, 50, 50, 5, 5);
+        // установка цвета рисования для заголовка цифры - чёрный
         g2.setColor(Color.black);
+        // проверка значения плитки
         if (tileValue > 0)
         {
+            // установка цвета рисования в зависимости от значения плитки
             g2.setColor(tile.getColor());
+            // аналогичное заполнение
             g2.fillRoundRect(x, y, 50, 50, 5, 5);
+            // установка цвета рисования для заголовка цифры - серого
             g2.setColor(Color.black );
+            // вывод значения плитки в центр прямоугольника
             g.drawString("" + tileValue, x + 25 - 3 * length, y + 25);
         }
     }
 
     // отрисовка графического интерфейса
+    @Override
     public void paint(Graphics g)
     {
+        // отрисовка фона окна
         super.paint(g);
+        // создание объекта Graphics2D из объекта Graphics
         Graphics2D g2 = (Graphics2D)g;
+        // вывод соответствующих заголовков
         g2.drawString("2048", 250, 20);
         g2.drawString("Счёт: " + game.getScore(),200 - 4 * String.valueOf(game.getScore()).length(), 40);
         g2.drawString("Наибольшее значение: " + game.getHighTile(), 280 - 4 * String.valueOf(game.getHighTile()).length(),40);
+        // начало игры
         g2.drawString("Нажмите 'Enter' чтобы начать", 210, 315);
         g2.drawString("Используйте клавиши 'wasd' или клавиши со стрелками для игры", 125, 340);
+        // установка цвета рисования для окна - серый
         g2.setColor(Color.gray);
+        // заполнение прямоугольника цветом
         g2.fillRect(140, 50, 250, 250);
         int i, j;
+        // отрисовка плиток
         for (i = 0; i < 4; i++)
         {
             for (j = 0; j < 4; j++)
@@ -123,6 +142,7 @@ public class Game extends JPanel implements KeyListener {
                 drawTiles(g, game.board[i][j], j * 60 + 150, i * 60 + 60);
             }
         }
+        // случай, когда игровое поле переполнено
         if (game.blackOut())
         {
             g2.drawString("Нажмите 'Enter' чтобы начать заново", 200, 360);
@@ -136,6 +156,7 @@ public class Game extends JPanel implements KeyListener {
                 }
             }
         }
+        // случай, когда игра окончена
         if (game.gameOver())
         {
             g2.setColor(Color.gray);

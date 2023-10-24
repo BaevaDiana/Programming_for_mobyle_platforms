@@ -1,40 +1,28 @@
 package Game_2048;
 
+// Класс Board (Игровое поле) работает с игровым полем.
+
 public class Board {
 
     // массив элементов из класса Tile
     public Tile[][] board;
-    int grids = 4;
+    // инициализация переменной размерности сетки
+    public int grids = 4;
     // инициализация переменной границы
-    int border = 0;
+    public int border = 0;
     // инициализация переменной игрового счёта
     public int score = 0;
 
-    // конструктор для Board — задание матрицы 4x4
+    // создание игрового поля размером 4x4
     public Board()
     {
         board = new Tile[4][4];
-        for ( int i = 0; i < board.length; i++ )
-        {
-            for ( int j = 0; j < board[i].length; j++ )
-            {
-                board[i][j] = new Tile();
-            }
-        }
-    }
-
-
-    // конструктор игрового поля с 2 параметрами — настраивает доску, на которой игрок уже проиграл (в целях тестирования)
-    public Board(int lose, int grids)
-    {
-        this.grids = grids;
-        board = new Tile[grids][grids];
         int i, j;
         for (i = 0; i < board.length; i++)
         {
             for (j = 0; j < board[i].length; j++)
             {
-                board[i][j] = new Tile((lose + i + j) * (i + j));
+                board[i][j] = new Tile();
             }
         }
     }
@@ -56,9 +44,9 @@ public class Board {
     {
         int high = board[0][0].getValue();
         int i, j;
-        for (i = 0; i < board.length; i++ )
+        for (i = 0; i < board.length; i++)
         {
-            for (j = 0; j < board[i].length; j++ )
+            for (j = 0; j < board[i].length; j++)
             {
                 if (board[i][j].getValue() > high)
                 {
@@ -69,31 +57,15 @@ public class Board {
         return high;
     }
 
-    // вывод игрового поля в консоль
-    public void print()
-    {
-        int i, j;
-        for (i = 0; i < board.length; i++ )
-        {
-            for (j = 0; j < board[i].length; j++ )
-            {
-                String s = board[i][j].toString() + " ";
-                System.out.print( s );
-            }
-            System.out.println("");
-        }
-        System.out.println("Счёт: " + score );
-    }
-
-        // возвращение игровой доски в виде строки (для графического интерфейса)
+    // возвращение игровой доски в виде строки (для графического интерфейса)
     @Override
     public String toString()
     {
         String s = "";
         int i, j;
-        for (i = 0; i < board.length; i++ )
+        for (i = 0; i < board.length; i++)
         {
-            for (j = 0; j < board[i].length; j++ )
+            for (j = 0; j < board[i].length; j++)
             {
                 s += board[i][j].toString() + " ";
             }
@@ -127,7 +99,7 @@ public class Board {
         }
     }
 
-    // проверка, полностью ли заполнено игровое поле
+    // проверка, полностью ли заполнено игровое поле (когда все плитки заняты, но не выигрышной комбинацией)
     public boolean blackOut()
     {
         int count = 0;
@@ -234,7 +206,7 @@ public class Board {
     }
 
     // сравнение значения двух плиток по вертикали и определение, совпадают ли они или нет
-    // если значение 0 (обычная плитка) — их значения суммируются (при условии, что сравниваются две разные плитки, и они движутся в сторону соответствующее направление)
+    // если значение 0 (пустая плитка) — их значения суммируются
     // рекурсия для прохождения всего столбца
     private void verticalMove(int row, int col, String direction)
     {
@@ -267,9 +239,8 @@ public class Board {
         }
     }
 
-
     // нажатие клавиши «w» или стрелки вверх
-    // вызов verticalMove с параметром «вверх» для каждой плитки
+    // вызов метода verticalMove с параметром «вверх» для каждой плитки
     public void up()
     {
         int i, j;
@@ -282,7 +253,7 @@ public class Board {
                 {
                     if (border <= j)
                     {
-                        verticalMove(j, i, "up" );
+                        verticalMove(j, i, "up");
                     }
                 }
             }
@@ -356,7 +327,7 @@ public class Board {
                 {
                     if (border <= j)
                     {
-                        horizontalMove(i, j,"left" );
+                        horizontalMove(i, j,"left");
                     }
                 }
             }
@@ -373,7 +344,7 @@ public class Board {
             border = (grids - 1);
             for (j = (grids - 1);j >= 0; j--)
             {
-                if (board[i][j].getValue() != 0 )
+                if (board[i][j].getValue() != 0)
                 {
                     if (border >= j)
                     {
@@ -383,18 +354,5 @@ public class Board {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

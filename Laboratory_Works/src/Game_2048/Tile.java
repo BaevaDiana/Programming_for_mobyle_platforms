@@ -1,4 +1,5 @@
 package Game_2048;
+
 import java.awt.Color;
 
 // Класс Tile(Плитка) работает с отдельными плитками.
@@ -10,22 +11,16 @@ public class Tile {
     // цвет плитки
     Color tileColor;
 
-    // создание базовой плитки со значением 0
+    // создание пустой плитки со значением 0
     public Tile()
     {
         value = 0;
     }
 
-    // создание плитки со значением числа
+    // создание не пустой плитки со значением
     public Tile(int number)
     {
         value = number;
-    }
-
-    // геттер значения плитки
-    public int getValue()
-    {
-        return value;
     }
 
     // сеттер значения плитки (используется при сложении двух плиток вместе)
@@ -34,7 +29,13 @@ public class Tile {
         this.value = value;
     }
 
-    // возвращение плитки как строки (для графического интерфейса)
+    // геттер значения плитки
+    public int getValue()
+    {
+        return value;
+    }
+
+    // возвращение значения плитки как строки (для графического интерфейса)
     @Override
     public String toString()
     {
@@ -58,7 +59,7 @@ public class Tile {
         }
         else if (this.getValue() == 16)
         {
-            tileColor = new Color( 245, 149, 99 );
+            tileColor = new Color(245, 149, 99 );
         }
         else if (this.getValue() == 32)
         {
