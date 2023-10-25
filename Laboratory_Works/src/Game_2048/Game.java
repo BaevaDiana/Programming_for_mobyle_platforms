@@ -1,13 +1,13 @@
 package Game_2048;
 
+import javax.swing.*;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class Game extends JPanel implements KeyListener {
     // создание нового объекта класса Board, который представляет игровое поле
@@ -177,7 +177,12 @@ public class Game extends JPanel implements KeyListener {
 
     public static void main(String[] args)
     {
-        setUpGUI();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                setUpGUI();
+            }
+        });
     }
 }
 
