@@ -8,9 +8,17 @@ public class TicTacToe extends JFrame {
     // двумерный массив кнопок - поле игры
     public JButton[][] board;
     // переменная для проверки чья очередь выполнить ход
-    private boolean player1Turn = true;
+    private boolean player1Turn1 = true;
+    public int player1Turn;
     public int n = 3;
     public int i,j;
+
+    // Создаем потоки для игроков
+    private Thread player1, player2;
+    // Создаем объект для синхронизации потоков
+    private Object lock = new Object();
+    // Создаем переменную для хранения текущего игрока
+    private int currentPlayer = 1;
 
     public TicTacToe() {
         super("Tic Tac Toe");
@@ -41,23 +49,26 @@ public class TicTacToe extends JFrame {
             // если клетка пустая, т.е. выполняется ход
             if (buttonClicked.getText().equals(""))
             {
-                // создание нового потока
-                Thread player = new Thread(() ->
-                {
                     // выполняет ход первый игрок
-                    if (player1Turn)
+                    if (currentPlayer == 1)
                     {
+                        player1 = new Thread(new TicTacToe.Player(1));
                         buttonClicked.setText("X");
+                        //currentPlayer = 1;
+                        player1.start();
                     }
                     // выполняет ход второй игрок
                     else
                     {
+                        player2 = new Thread(new TicTacToe.Player(2));
                         buttonClicked.setText("O");
+                        //currentPlayer = 2;
+                        player2.start();
                     }
                     // проверка есть ли победитель
                     if (checkForWin())
                     {
-                        JOptionPane.showMessageDialog(null, (player1Turn ? "X" : "O") + " выйграл!");
+                        JOptionPane.showMessageDialog(null, (player1Turn1 ? "X" : "O") + " выйграл!");
                         System.exit(0);
                     }
                     // проверка на ничью
@@ -66,17 +77,68 @@ public class TicTacToe extends JFrame {
                         JOptionPane.showMessageDialog(null, "Ничья!");
                         System.exit(0);
                     }
-                    // смена хода
-                    else
-                    {
-                        player1Turn = !player1Turn;
+                     //смена хода
+//                    else
+//                    {
+//                    }
+            }
+
+//            //Блокируем другого игрока
+//            synchronized (lock) {
+//                // Устанавливаем значение на кнопке
+//                buttonClicked.setText(currentPlayer == 1 ? "X" : "O");
+//                // Переключаем текущего игрока
+//                currentPlayer = currentPlayer == 1 ? 2 : 1;
+//                // Оповещаем другого игрока
+//                lock.notify();
+//            }
+            // Создаем потоки для игроков
+//            player1 = new Thread(new TicTacToe.Player(1));
+//            player2 = new Thread(new TicTacToe.Player(2));
+            // Запускаем потоки
+//            player1.start();
+//            player2.start();
+        }
+    }
+
+    // Класс для игрока
+    private class Player implements Runnable {
+        // Номер игрока
+        private int playerNumber;
+
+        public Player(int playerNumber) {
+            this.playerNumber = playerNumber;
+        }
+
+        public void run() {
+            while (true) {
+                // Блокируем другого игрока
+                synchronized (lock) {
+                    // Если текущий игрок не является этим игроком, то ждем
+                    while (currentPlayer != playerNumber) {
+                        try {
+                            lock.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                });
-                // запуск нового потока при нажатии на кнопку
-                player.start();
+                    // Оповещаем игрока о его ходе
+                    System.out.println("Игрок " + playerNumber + " делает ход");
+                    // Ждем, пока игрок не сделает ход
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    // Переключаем текущего игрока
+                    currentPlayer = currentPlayer == 1 ? 2 : 1;
+                    // Оповещаем другого игрока
+                    lock.notify();
+                }
             }
         }
     }
+
 
     // проверка наличия на поле выигрышной комбинации
     private boolean checkForWin()
@@ -143,3 +205,4 @@ public class TicTacToe extends JFrame {
 //        TicTacToe game = new TicTacToe();
     }
 }
+
