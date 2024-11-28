@@ -1,6 +1,7 @@
 package Devices;
 
 public class Device implements IDevice, IDeviceDrivers {
+
     private String manufacturer, serialNumber;
     private float price;
 
@@ -12,17 +13,14 @@ public class Device implements IDevice, IDeviceDrivers {
 
     public void setManufacturer(String manufacturer){
         this.manufacturer = manufacturer;
-
     }
 
     public void setSerialNumber(String serialNumber){
         this.serialNumber = serialNumber;
-
     }
 
     public void setPrice(float price){
         this.price = price;
-
     }
 
     public String getManufacturer(){
