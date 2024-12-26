@@ -1,4 +1,4 @@
-package Examples;
+package Examples.Others;
 
 public class MyDate {
     private int day, month,year;

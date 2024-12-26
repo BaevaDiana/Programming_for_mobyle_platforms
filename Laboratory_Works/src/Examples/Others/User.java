@@ -1,4 +1,4 @@
-package Examples;
+package Examples.Others;
 
 public class User
 {

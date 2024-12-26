@@ -1,4 +1,4 @@
-package Examples.Multitrading_2;
+package Examples.Multitrading.Multitrading_2;
 
 public class MyRunnable implements Runnable{
     @Override

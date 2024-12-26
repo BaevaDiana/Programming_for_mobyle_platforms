@@ -1,4 +1,4 @@
-package Examples;
+package Examples.Others;
 
 public class TestEquals {
      public static void main(String[] args){

@@ -1,4 +1,4 @@
-package Examples;
+package Examples.Others;
 // разбор вопросов с собеседования
 
 //// в.10

@@ -1,4 +1,4 @@
-package Examples.Multitrading_1;
+package Examples.Multitrading.Multitrading_1;
 
 public class JoinThread extends Thread{
     public JoinThread(String name) {
